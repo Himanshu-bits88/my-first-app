@@ -1,131 +1,72 @@
-"use client";
-import { useState } from "react";
+"use client"
+import { useState, useEffect } from 'react'
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState("age");
-  const [dob, setDob] = useState("");
-  const [age, setAge] = useState("");
-  const [qrText, setQrText] = useState("Himanshu Kumar");
-  const [wordText, setWordText] = useState("");
-  const [passLength, setPassLength] = useState(12);
-  const [password, setPassword] = useState("Click Generate");
-  const [instaText, setInstaText] = useState("Himanshu");
-  const [fbText, setFbText] = useState("Himanshu");
+  const roles = ["MERN Stack Developer", "Full Stack Developer", "React Developer"];
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [activeTool, setActiveTool] = useState("Age");
 
-  const calculateAge = () => {
-    if (!dob) return;
-    const birth = new Date(dob);
-    const now = new Date();
-    let years = now.getFullYear() - birth.getFullYear();
-    const m = now.getMonth() - birth.getMonth();
-    if (m < 0 || (m === 0 && now.getDate() < birth.getDate())) years--;
-    setAge(years + " Years Old");
-  };
+  useEffect(() => {
+    let currentRole = roles[roleIndex];
+    let i = 0;
+    let typing = setInterval(() => {
+      if (i <= currentRole.length) {
+        setDisplayText(currentRole.slice(0, i));
+        i++;
+      } else {
+        clearInterval(typing);
+        setTimeout(() => setRoleIndex((p) => (p + 1) % roles.length), 1500);
+      }
+    }, 100);
+    return () => clearInterval(typing);
+  }, [roleIndex]);
 
-  const generatePassword = () => {
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%";
-    let pass = "";
-    for (let i = 0; i < passLength; i++) {
-      pass += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    setPassword(pass);
-  };
+  const tools = ["Age", "QR", "Word", "Password", "Image", "LinkedIn", "Instagram", "Facebook"];
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e40af] to-[#020617] text-white p-4">
-      
-      {/* HEADER */}
-      <header className="text-center py-10">
-        <div className="relative inline-block">
-          <div className="absolute -inset-2 bg-blue-400/30 rounded-full blur-2xl"></div>
-          <img src="/himanshu.jpeg" alt="Himanshu Kumar" className="relative w-36 h-36 rounded-full mx-auto border-4 border-white shadow-2xl object-cover" />
+    <main className="min-h-screen bg-[#081030] text-white">
+      <div className="max-w-6xl mx-auto px-6 pt-16 pb-10 flex flex-col md:flex-row items-center justify-between gap-10">
+        <div className="text-center md:text-left">
+          <h1 className="text-4xl md:text-5xl font-bold">Hi, I am Himanshu Kumar</h1>
+          <h2 className="text-3xl md:text-4xl font-bold mt-4">I am a <span className="text-purple-400">{displayText}</span><span className="animate-pulse">|</span></h2>
+          <p className="text-gray-300 mt-6 max-w-2xl text-[15px] leading-relaxed border-l-2 border-purple-500 pl-4">
+            BCA Final Year (2024-2027) @ BRABU | MERN Stack Developer (React, Next.js) | Looking for Paid Internship/Job
+          </p>
         </div>
-        <h1 className="text-5xl font-black mt-6 tracking-wider">HK TOOLS LAB</h1>
-        <p className="text-blue-200 mt-3 text-lg font-medium">8 Powerful Tools by Himanshu Kumar | Muzaffarpur Bihar</p>
-      </header>
-
-      {/* TABS */}
-      <div className="flex flex-wrap gap-3 justify-center my-8 max-w-3xl mx-auto">
-        {[
-          { id: "age", name: "Age" },
-          { id: "qr", name: "QR" },
-          { id: "word", name: "Word" },
-          { id: "pass", name: "Password" },
-          { id: "image", name: "Image" },
-          { id: "linkedin", name: "LinkedIn" },
-          { id: "instagram", name: "Instagram" },
-          { id: "facebook", name: "Facebook" },
-        ].map((t) => (
-          <button
-            key={t.id}
-            onClick={() => setActiveTab(t.id)}
-            className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all ${
-              activeTab === t.id ? "bg-white text-blue-900 shadow-lg scale-105" : "bg-white/10 backdrop-blur border border-white/20 hover:bg-white/20"
-            }`}
-          >
-            {t.name}
-          </button>
-        ))}
+        <img src="/himanshu.jpeg" alt="Himanshu" className="w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-purple-500 object-cover"/>
       </div>
 
-      {/* TOOL BOX */}
-      <div className="max-w-xl mx-auto bg-white/10 backdrop-blur-xl p-6 rounded-2xl border border-white/20 shadow-2xl">
-        
-        {activeTab === "age" && (
-          <div>
-            <h2 className="font-bold mb-4 text-xl">1. Age Calculator</h2>
-            <input type="date" className="w-full p-3 rounded-lg bg-black/30 border border-white/20" onChange={(e) => setDob(e.target.value)} />
-            <button onClick={calculateAge} className="w-full mt-4 bg-white text-blue-900 p-3 rounded-lg font-bold">Calculate</button>
-            <p className="mt-4 text-2xl text-center font-bold">{age}</p>
+      <div className="bg-[#0a193f] rounded-t-[40px] p-6 md:p-10">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-4xl md:text-6xl font-extrabold text-center tracking-widest">LAB</h2>
+          <p className="text-center mt-2 opacity-70 text-sm">8 Powerful Tools by Himanshu Kumar | Muzaffarpur Bihar</p>
+          <div className="flex flex-wrap justify-center gap-3 mt-8">
+            {tools.map(t => (
+              <button key={t} onClick={() => setActiveTool(t)} className={`px-5 py-2.5 rounded-full border text-sm ${activeTool === t? 'bg-white text-[#0a193f] font-bold' : 'bg-white/10'}`}>{t}</button>
+            ))}
           </div>
-        )}
-
-        {activeTab === "qr" && (
-          <div>
-            <h2 className="font-bold mb-4 text-xl">2. QR Code Maker</h2>
-            <input value={qrText} onChange={(e) => setQrText(e.target.value)} className="w-full p-3 rounded-lg bg-black/30 border border-white/20" />
-            <div className="flex justify-center mt-4 bg-white p-4 rounded-xl">
-              <img src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrText)}`} alt="QR" />
-            </div>
+          <div className="bg-white/5 border border-white/10 rounded-[30px] p-6 mt-8 max-w-2xl mx-auto min-h-[280px]">
+            {activeTool === "Age" && <AgeTool />}
+            {activeTool === "QR" && <QRTool />}
+            {activeTool === "Word" && <WordTool />}
+            {activeTool === "Password" && <PasswordTool />}
+            {activeTool === "Image" && <ImageTool />}
+            {activeTool === "LinkedIn" && <LinkedInTool />}
+            {activeTool === "Instagram" && <InstagramTool />}
+            {activeTool === "Facebook" && <FacebookTool />}
           </div>
-        )}
-
-        {activeTab === "word" && (
-          <div>
-            <h2 className="font-bold mb-4 text-xl">3. Word Counter</h2>
-            <textarea value={wordText} onChange={(e) => setWordText(e.target.value)} className="w-full h-32 p-3 rounded-lg bg-black/30 border border-white/20" placeholder="Type here..."></textarea>
-            <div className="mt-3 bg-black/30 p-3 rounded-lg text-center">Words: {wordText.trim() ? wordText.trim().split(/\s+/).length : 0} | Chars: {wordText.length}</div>
-          </div>
-        )}
-
-        {activeTab === "pass" && (
-          <div>
-            <h2 className="font-bold mb-4 text-xl">4. Password Generator</h2>
-            <p className="text-sm mb-2">Length: {passLength}</p>
-            <input type="range" min={6} max={30} value={passLength} onChange={(e) => setPassLength(Number(e.target.value))} className="w-full accent-white" />
-            <button onClick={generatePassword} className="w-full mt-4 bg-white text-blue-900 p-3 rounded-lg font-bold">Generate</button>
-            <p className="mt-4 p-3 bg-black/40 rounded-lg text-center break-all border border-white/20 font-mono">{password}</p>
-          </div>
-        )}
-
-        {activeTab === "image" && <div><h2 className="font-bold text-xl">5. Image Tools</h2><p className="mt-2 text-blue-200">Compress & Converter Coming Soon...</p></div>}
-        {activeTab === "linkedin" && <div><h2 className="font-bold text-xl">6. LinkedIn Bio</h2><div className="bg-black/30 p-4 rounded-xl mt-3 text-sm border border-white/10">Aspiring Full Stack Developer (MERN) | BCA Student | Building HK TOOLS LAB | Muzaffarpur, Bihar | Open to Internships</div></div>}
-        {activeTab === "instagram" && <div><h2 className="font-bold text-xl">7. Instagram Fonts</h2><input value={instaText} onChange={(e) => setInstaText(e.target.value)} className="w-full p-3 rounded-lg bg-black/30 border border-white/20 mt-3" /><p className="mt-3 bg-black/30 p-3 rounded-lg text-center text-xl">꧁༒ {instaText} ༒꧂</p></div>}
-        {activeTab === "facebook" && <div><h2 className="font-bold text-xl">8. Facebook Fonts</h2><input value={fbText} onChange={(e) => setFbText(e.target.value)} className="w-full p-3 rounded-lg bg-black/30 border border-white/20 mt-3" /><p className="mt-3 bg-black/30 p-3 rounded-lg text-center text-xl">꧁ {fbText} ꧂</p></div>}
-
-      </div>
-
-      {/* FOOTER */}
-      <footer className="text-center mt-12 pt-8 border-t border-white/10">
-        <p className="text-blue-200 text-sm">Made in India with ❤️ by Himanshu Kumar</p>
-        <div className="flex justify-center gap-3 mt-4">
-          <a href="https://github.com/Himanshu-bits88" target="_blank" className="bg-white/10 px-4 py-2 rounded-full text-xs">GitHub</a>
-          <a href="https://www.linkedin.com/in/himanshu-kumar-2b8418355" target="_blank" className="bg-white/10 px-4 py-2 rounded-full text-xs">LinkedIn</a>
-          <a href="https://instagram.com/royal_himanshu_kumar_1013" target="_blank" className="bg-white/10 px-4 py-2 rounded-full text-xs">Instagram</a>
-          <a href="https://mailto:hk955539@gmail.com" target="_blank" className="bg-white/10 px-4 py-2 rounded-full text-xs">Email</a>
         </div>
-        <p className="text-white/30 text-xs mt-4"> copyright © 2026 Himanshu Kumar</p>
-      </footer>
+      </div>
     </main>
-  );
+  )
 }
+
+function AgeTool(){ const [dob,setDob]=useState(""); const [age,setAge]=useState(""); return <><h3 className="font-bold mb-3">Age Calculator</h3><input type="date" value={dob} onChange={e=>setDob(e.target.value)} className="w-full p-3 rounded-xl bg-black/40 border border-white/10" /><button onClick={()=>{if(!dob)return; let d=new Date(dob); let diff=Date.now()-d.getTime(); let a=new Date(diff); setAge(`${a.getUTCFullYear()-1970} Years`)}} className="w-full mt-4 bg-white text-blue-900 p-3 rounded-xl font-bold">Calculate</button>{age && <p className="mt-3 text-center text-green-300 font-bold">{age}</p>}</>}
+function QRTool(){ const [text,setText]=useState("https://"); const [src,setSrc]=useState(""); return <><h3 className="font-bold mb-3">QR Generator</h3><input value={text} onChange={e=>setText(e.target.value)} className="w-full p-3 rounded-xl bg-black/40 border" /><button onClick={()=>setSrc(`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(text)}`)} className="w-full mt-4 bg-white text-blue-900 p-3 rounded-xl font-bold">Generate QR</button>{src && <img src={src} className="mx-auto mt-4 bg-white p-2 rounded"/>}</>}
+function WordTool(){ const [txt,setTxt]=useState(""); return <><h3 className="font-bold mb-3">Word Counter</h3><textarea value={txt} onChange={e=>setTxt(e.target.value)} className="w-full p-3 rounded-xl bg-black/40 h-32 border"></textarea><p className="mt-2 text-sm">Words: {txt.split(" ").filter(x=>x!="").length} | Chars: {txt.length}</p></>}
+function PasswordTool(){ const [pass,setPass]=useState("Click Generate"); return <><h3 className="font-bold mb-3">Password Generator</h3><input value={pass} readOnly className="w-full p-3 rounded-xl bg-black/40 text-center" /><button onClick={()=>{let s="ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz123456789@#$!"; let p=""; for(let i=0;i<14;i++)p+=s[Math.floor(Math.random()*s.length)]; setPass(p)}} className="w-full mt-4 bg-white text-blue-900 p-3 rounded-xl font-bold">Generate</button></>}
+function ImageTool(){ const handleFile = (e:any) => { let f = e.target.files?.[0]; if(!f) return; let img = new window.Image(); img.src = URL.createObjectURL(f); img.onload = () => { let c = document.createElement('canvas'); c.width = img.width*0.6; c.height = img.height*0.6; let ctx = c.getContext('2d'); ctx?.drawImage(img,0,0,c.width,c.height); let a = document.createElement('a'); a.download='compressed.jpg'; a.href=c.toDataURL('image/jpeg',0.6); a.click(); }}; return <><h3 className="font-bold mb-3">Image Compressor</h3><input type="file" accept="image/*" onChange={handleFile} className="w-full bg-black/30 p-3 rounded-xl" /></>}
+function LinkedInTool(){ const [role,setRole]=useState("BCA Final Year"); const [bio,setBio]=useState(""); return <><h3 className="font-bold mb-3">LinkedIn Bio</h3><input value={role} onChange={e=>setRole(e.target.value)} className="w-full p-3 rounded-xl bg-black/40" /><button onClick={()=>setBio(`🚀 ${role} | MERN Stack Developer | React, Next.js | Looking for Internship | Muzaffarpur`)} className="w-full mt-4 bg-white text-blue-900 p-3 rounded-xl font-bold">Generate</button>{bio && <textarea value={bio} readOnly className="w-full mt-3 p-3 rounded-xl bg-black/40 h-24 text-sm"></textarea>}</>}
+function InstagramTool(){ const [name,setName]=useState("Himanshu"); const [bio,setBio]=useState(""); return <><h3 className="font-bold mb-3">Instagram Bio</h3><input value={name} onChange={e=>setName(e.target.value)} className="w-full p-3 rounded-xl bg-black/40" /><button onClick={()=>setBio(`✨ ${name}\n💻 BCA Final Year @ BRABU\n🚀 MERN Stack Dev\n📍 Muzaffarpur`)} className="w-full mt-4 bg-white text-blue-900 p-3 rounded-xl font-bold">Generate</button>{bio && <textarea value={bio} readOnly className="w-full mt-3 p-3 rounded-xl bg-black/40 h-24 text-sm"></textarea>}</>}
+function FacebookTool(){ const [name,setName]=useState("Himanshu Kumar"); const [stylish,setStylish]=useState(""); return <><h3 className="font-bold mb-3">Facebook Stylish Name</h3><input value={name} onChange={e=>setName(e.target.value)} className="w-full p-3 rounded-xl bg-black/40" /><button onClick={()=>{let map:any={'a':'α','i':'î','o':'ø','s':'š','h':'ĥ'}; let s=name.toLowerCase().split('').map((c:string)=>map[c]||c).join(''); setStylish(s)}} className="w-full mt-4 bg-white text-blue-900 p-3 rounded-xl font-bold">Make Stylish</button>{stylish && <p className="mt-3 text-center text-xl font-bold">{stylish}</p>}</>}
