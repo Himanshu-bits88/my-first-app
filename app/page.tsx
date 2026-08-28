@@ -69,7 +69,7 @@ export default function Home() {
           <a href="http://hk955539@gmail.com" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-xs font-bold hover:bg-white hover:text-[#081030]">@</a>
           <a href="https://instagram.com/royal_himanshu_kumar_1013" target="_blank" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-xs font-bold hover:bg-white hover:text-[#081030]">IG</a>
         </div>
-        <p className="text-white text-sm font-bold">Made in India with ❤️ by Himanshu Kumar</p>
+        <p className="text-white text-sm font-bold">Made in India with ❤️ by Himanshu Kumar Web Developer & Designer. All rights reserved.</p>
         <p className="text-white/30 text-[10px] mt-2">Copyright © 2026 HK Tools Lab - 20 All Tools</p>
       </footer>
     </main>
