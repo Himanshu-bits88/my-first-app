@@ -68,13 +68,42 @@ export default function Home() {
           </div>
         </div>
       </div>
+      {/* ===== CERTIFICATE SECTION - 5 Photos ===== */}
+      <div className="max-w-6xl mx-auto mt-16 px-6">
+        <h2 className="text-4xl font-extrabold text-center tracking-widest">MY CERTIFICATES</h2>
+        <p className="text-center mt-2 opacity-70 text-sm">5 Verified Certificates - Public Visible</p>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+          <div className="bg-white/10 p-3 rounded-2xl border border-white/10">
+            <img src="/ca1.jpeg" className="rounded-xl w-full h-52 object-cover bg-white" />
+            <p className="text-center mt-3 text-sm font-bold">Certificate 1</p>
+          </div>
+          <div className="bg-white/10 p-3 rounded-2xl border border-white/10">
+            <img src="/ca2.jpeg" className="rounded-xl w-full h-52 object-cover bg-white" />
+            <p className="text-center mt-3 text-sm font-bold">Certificate 2</p>
+          </div>
+          <div className="bg-white/10 p-3 rounded-2xl border border-white/10">
+            <img src="/ca3.jpeg" className="rounded-xl w-full h-52 object-cover bg-white" />
+            <p className="text-center mt-3 text-sm font-bold">Certificate 3</p>
+          </div>
+          <div className="bg-white/10 p-3 rounded-2xl border border-white/10">
+            <img src="/ca4.jpeg" className="rounded-xl w-full h-52 object-cover bg-white" />
+            <p className="text-center mt-3 text-sm font-bold">Certificate 4</p>
+          </div>
+          <div className="bg-white/10 p-3 rounded-2xl border border-white/10">
+            <img src="/ca5.jpeg" className="rounded-xl w-full h-52 object-cover bg-white" />
+            <p className="text-center mt-3 text-sm font-bold">Certificate 5</p>
+          </div>
+        </div>
+      </div>
 
       <footer className="w-full text-center py-10 mt-10 border-t border-white/10">
         <div className="flex justify-center gap-4 mb-4">
-          <a href="https://www.linkedin.com/in/himanshu-kumar-2b8418355" target="_blank" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-xs font-bold">in</a>
-          <a href="https://github.com/Himanshu-bits88" target="_blank" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-xs font-bold">GH</a>
-          <a href="mailto:hk955539@gmail.com" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-xs font-bold">@</a>
-          <a href="https://instagram.com/royal_himanshu_kumar_1013" target="_blank" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-xs font-bold">IG</a>
+          <a href="https://www.linkedin.com/in/himanshu-kumar-2b8418355" target="_blank" className="w-20 h-10 bg-white/10 rounded-full flex items-center justify-center text-xs font-bold">LinkedIn</a>
+          <a href="https://github.com/Himanshu-bits88" target="_blank" className="w-20 h-10 bg-white/10 rounded-full flex items-center justify-center text-xs font-bold">GitHub</a>
+          <a href="mailto:hk955539@gmail.com" className="w-20 h-10 bg-white/10 rounded-full flex items-center justify-center text-xs font-bold">Email</a>
+          <a href="https://instagram.com/royal_himanshu_kumar_1013" target="_blank" className="w-20 h-10 bg-white/10 rounded-full flex items-center justify-center text-xs font-bold">Instagram</a>
+          <a href="https://hksinghpublicationbio-flax.vercel.app/" target="_blank" className="w-20 h-10 bg-white/10 rounded-full flex items-center justify-center text-xs font-bold">Bio Link</a>
         </div>
         <p className="text-white text-sm font-bold">Made in India with ❤️ by Himanshu Kumar Web Developer & Designer 20 Tools Company. </p>
         <p className="text-white/30 text-[10px] mt-2">Copyright © 2026 HK Tools Lab websites - All Rights Reserved</p>
