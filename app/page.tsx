@@ -35,7 +35,6 @@ export default function Home() {
     }
     setActiveTool(t);
   }
-
   return (
     <main className="min-h-screen bg-[#081030] text-white">
       {showAuth && <AuthModal onClose={()=>setShowAuth(false)} onLogin={(u:any)=>{setIsLoggedIn(true); setCurrentUser(u); setShowAuth(false);}} />}
@@ -159,7 +158,37 @@ function LoginToolReal(){
   return(<div className="bg-white rounded-xl p-6 text-black text-center"><h3 className="font-bold text-lg">You are Logged In ✓</h3><p className="mt-2 text-sm">{currentUser?.email}</p><p className="text-xs mt-2 opacity-60">Admin data is private. Only owner can see all users.</p></div>)
 }
 
-function GetInTouchTool(){ const [form,setForm]=useState({name:"",email:"",message:""}); const [status,setStatus]=useState(""); const handleSubmit = async (e:any) => { e.preventDefault(); setStatus("Sending..."); try{ const res = await fetch("https://api.web3forms.com/submit", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({access_key:"01af3432-1653-4498-a0e5-720e5e2fd3d5", name:form.name, email:form.email, message:form.message, subject:"New Message from HK Lab"})}); const data = await res.json(); if(data.success){ setStatus("Sent ✓ Check your hk955539@gmail.com"); setForm({name:"",email:"",message:""}); } else setStatus("Failed, try again"); }catch{ setStatus("Error"); } }; return(<div className="max-w-xl mx-auto bg-white rounded-[20px] p-6 text-black"><h3 className="font-bold text-xl">Get in Touch - Please fill out the form here and send it.</h3><form onSubmit={handleSubmit} className="space-y-3 mt-4"><input value={form.name} onChange={e=>setForm({...form,name:e.target.value})} placeholder="Your Name" required className="w-full p-3 rounded-lg bg-gray-50 border text-sm"/><input value={form.email} onChange={e=>setForm({...form,email:e.target.value})} placeholder="Your Email" type="email" required className="w-full p-3 rounded-lg bg-gray-50 border text-sm"/><textarea value={form.message} onChange={e=>setForm({...form,message:e.target.value})} placeholder="Your Message" required rows={4} className="w-full p-3 rounded-lg bg-gray-50 border text-sm"></textarea><button type="submit" className="bg-[#081030] text-white px-6 py-3 rounded-lg text-sm font-bold w-full">{status || "Send to hk955539@gmail.com"}</button></form></div>) }
+function GetInTouchTool(){
+  const [form,setForm]=useState({name:"",email:"",message:""});
+  const [status,setStatus]=useState("");
+  const handleSubmit = async (e:any) => {
+    e.preventDefault();
+    setStatus("Sending...");
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+    const data = await res.json();
+    if(data.success){
+      setStatus("Saved to MongoDB! ✅");
+      setForm({ name: "", email: "", message: "" });
+    } else {
+      setStatus("Error: " + data.error);
+    }
+  };
+  return(
+    <div className="w-full p-4 bg-white rounded-xl text-black">
+      <h2 className="text-2xl font-bold mb-4">Get In Touch</h2>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+        <input className="border p-2 rounded" placeholder="Name" value={form.name} onChange={(e:any)=>setForm({...form, name:e.target.value})} required />
+        <input className="border p-2 rounded" placeholder="Email" value={form.email} onChange={(e:any)=>setForm({...form, email:e.target.value})} required />
+        <textarea className="border p-2 rounded" placeholder="Message" value={form.message} onChange={(e:any)=>setForm({...form, message:e.target.value})} required rows={4} />
+        <button className="bg-black text-white p-2 rounded">{status || "Send Message"}</button>
+      </form>
+    </div>
+  )
+}
 
 function CodeLabTool(){
   const [lang,setLang]=useState("Python"); const [code,setCode]=useState(`print("Hello Himanshu from Muzaffarpur,Bihar")`); const [output,setOutput]=useState(""); const [loading,setLoading]=useState(false);
