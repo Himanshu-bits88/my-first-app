@@ -171,7 +171,7 @@ function GetInTouchTool(){
     });
     const data = await res.json();
     if(data.success){
-      setStatus("Saved to MongoDB! ✅");
+      setStatus("Sent successfully! ✅");
       setForm({ name: "", email: "", message: "" });
     } else {
       setStatus("Error: " + data.error);
