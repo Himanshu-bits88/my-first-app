@@ -46,7 +46,7 @@ export default function Home() {
           <p className="text-gray-300 mt-6 max-w-2xl text-[15px] leading-relaxed border-l-2 border-purple-500 pl-4">BCA Final Year Student (2024-2027) @ BRABU | MERN Stack Developer (React, Next.js) | Looking for new opportunities | Muzaffarpur, Bihar | Passionate about building web applications|Skills-C-programming, Java, HTML,c++,SQL,github,website build with Html,next.js|languages: English, Hindi {isLoggedIn && `| Logged: ${currentUser?.email}`}</p>
           {isLoggedIn && <button onClick={()=>{localStorage.removeItem("hk_current_user"); setIsLoggedIn(false); setCurrentUser(null)}} className="mt-3 text-xs bg-red-600 px-3 py-1 rounded">Logout</button>}
         </div>
-        <img src="/himanshu.jpeg" alt="Himanshu" className="w-50 h-50 rounded-full object-cover border-2 border-blue-600" />
+        <img src="/himansu.jpeg" alt="Himanshu" className="w-80 h-60 rounded-full object-cover border-2 border-blue-600" />
       </div>
 
       <div className="bg-[#0a193f] rounded-t-[40px] p-6 md:p-10">
