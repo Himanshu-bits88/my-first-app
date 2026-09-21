@@ -98,6 +98,7 @@ export default function Home() {
           <a href="mailto:hk955539@gmail.com" className="w-20 h-10 bg-white/10 rounded-full flex items-center justify-center text-xs font-bold">Email</a>
           <a href="https://instagram.com/royal_himanshu_kumar_1013" target="_blank" className="w-20 h-10 bg-white/10 rounded-full flex items-center justify-center text-xs font-bold">Instagram</a>
           <a href="https://hksinghpublicationbio-flax.vercel.app/" target="_blank" className="w-20 h-10 bg-white/10 rounded-full flex items-center justify-center text-xs font-bold">Bio Link</a>
+          <a href="https://www.facebook.com/share/1HeVRiooAh/" target="_blank" className="w-20 h-10 bg-white/10 rounded-full flex items-center justify-center text-xs font-bold">Facebook</a>
         </div>
         <p className="text-white text-sm font-bold">Made in India with ❤️ by Himanshu Kumar Web Developer & Designer 20 Tools Company. </p>
         <p className="text-white/30 text-[10px] mt-2">Copyright © 2026 HK Tools Lab websites - All Rights Reserved</p>
