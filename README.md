@@ -2,6 +2,12 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### MongoDB configuration on Netlify
+
+Contact submissions use MongoDB. Add `MONGODB_URI` in the site's Netlify environment variables with your MongoDB connection string. Include the Functions scope and the deploy contexts where the contact form is used, then trigger a new deploy. Keep the value server-side; do not use a `NEXT_PUBLIC_` prefix or commit credentials.
+
+For local development, set `MONGODB_URI` in an untracked `.env.local` file. Builds do not require a database connection. Until the runtime variable is configured, `/api/contact` returns HTTP 503 and does not save messages.
+
 First, run the development server:
 
 ```bash
