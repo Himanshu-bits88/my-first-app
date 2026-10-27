@@ -17,6 +17,9 @@ export async function POST(req) {
     await Contact.create({ name, email, message });
     return Response.json({ success: true });
   } catch (e) {
-    return Response.json({ success: false, error: e.message }, { status: 500 });
+    return Response.json(
+      { success: false, error: "Unable to send your message. Please try again later." },
+      { status: e.code === "MONGODB_NOT_CONFIGURED" ? 503 : 500 }
+    );
   }
 }
